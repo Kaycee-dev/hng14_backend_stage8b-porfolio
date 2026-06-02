@@ -102,11 +102,11 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       <p className="mt-3 text-sm leading-relaxed text-text-secondary">
         {project.description}
       </p>
-      <div className="mt-4 flex flex-wrap gap-1.5">
+      <div className="mt-4 grid grid-cols-2 gap-1.5 sm:flex sm:flex-wrap">
         {project.stack.map((item) => (
           <span
             key={`${project.id}-${item}`}
-            className="rounded border border-border bg-bg-secondary px-2 py-0.5 font-mono text-[11px] text-text-muted"
+            className="min-w-0 rounded border border-border bg-bg-secondary px-2 py-0.5 font-mono text-[11px] text-text-muted"
           >
             {item}
           </span>
