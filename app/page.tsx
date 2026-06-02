@@ -5,16 +5,8 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
+import { SiteHeader } from "@/components/SiteHeader";
 import { featured, profile, projects, reflection, skills } from "@/lib/portfolio-content";
-
-const navItems = [
-  { label: "Profile", href: "#profile" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Featured", href: "#featured" },
-  { label: "Reflection", href: "#reflection" },
-  { label: "Contact", href: "#contact" },
-];
 
 const backendProjects = projects.filter((project) => project.track === "Backend");
 const devopsProjects = projects.filter((project) => project.track === "DevOps");
@@ -75,7 +67,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   return (
     <article
       id={`project-${project.id}`}
-      className="flex h-full max-w-full flex-col overflow-hidden rounded-lg border border-border bg-bg-card p-5"
+      className="flex h-full max-w-full scroll-mt-24 flex-col overflow-hidden rounded-lg border border-border bg-bg-card p-5"
     >
       <div className="mb-3 flex flex-wrap items-center gap-2">
         <span className="font-mono text-[11px] font-medium uppercase text-accent">
@@ -134,45 +126,12 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
 export default function Home() {
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-border bg-bg-secondary/95 backdrop-blur">
-        <nav
-          className="mx-auto flex max-w-6xl items-center justify-between gap-4 overflow-hidden px-6 py-4"
-          aria-label="Primary"
-        >
-          <a
-            href="#profile"
-            className="font-display text-2xl font-bold text-accent"
-            aria-label="Kelechi Uba profile"
-          >
-            KU
-          </a>
-          <ul className="hidden items-center gap-5 lg:flex">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="text-sm text-text-secondary transition-colors hover:text-text-primary"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <a
-            href={`mailto:${profile.email}`}
-            aria-label={`Email ${profile.name}`}
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-accent text-bg-primary transition-colors hover:bg-accent-dim sm:h-auto sm:w-auto sm:gap-2 sm:px-3 sm:py-2 sm:text-sm sm:font-semibold"
-          >
-            <Mail size={15} aria-hidden="true" />
-            <span className="hidden sm:inline">Contact</span>
-          </a>
-        </nav>
-      </header>
+      <SiteHeader email={profile.email} />
 
-      <main>
+      <main className="pt-16">
         <section
           id="profile"
-          className="mx-auto grid max-w-6xl gap-10 overflow-hidden px-6 py-16 lg:grid-cols-[1.2fr_0.8fr]"
+          className="mx-auto grid max-w-6xl scroll-mt-24 gap-10 overflow-hidden px-6 py-16 lg:grid-cols-[1.2fr_0.8fr]"
         >
           <div>
             <p className="mb-4 font-mono text-xs font-medium uppercase text-accent">
@@ -228,7 +187,7 @@ export default function Home() {
           </aside>
         </section>
 
-        <section id="projects" className="border-y border-border bg-bg-secondary/40">
+        <section id="projects" className="scroll-mt-24 border-y border-border bg-bg-secondary/40">
           <div className="mx-auto max-w-6xl px-6 py-14">
             <SectionHeader
               eyebrow="Projects"
@@ -252,10 +211,6 @@ export default function Home() {
                 <h3 className="mb-2 font-display text-2xl font-semibold text-text-primary">
                   Supporting DevOps
                 </h3>
-                <p className="mb-4 max-w-3xl text-sm leading-relaxed text-text-secondary">
-                  I was also a DevOps intern in HNG14; this work backs the
-                  platform and CI skills above.
-                </p>
                 <div className="grid gap-4 overflow-hidden md:grid-cols-2">
                   {devopsProjects.map((project) => (
                     <ProjectCard key={project.id} project={project} />
@@ -266,7 +221,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="skills" className="mx-auto max-w-6xl px-6 py-14">
+        <section id="skills" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-14">
             <SectionHeader
               eyebrow="Skills"
               title="Every skill points back to a project"
@@ -300,7 +255,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="featured" className="border-y border-border bg-bg-secondary/40">
+        <section id="featured" className="scroll-mt-24 border-y border-border bg-bg-secondary/40">
           <div className="mx-auto max-w-6xl px-6 py-14">
             <SectionHeader
               eyebrow="Featured deep-dive"
@@ -361,7 +316,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="reflection" className="mx-auto max-w-6xl px-6 py-14">
+        <section id="reflection" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-14">
             <SectionHeader
               eyebrow="Reflection"
               title="What changed in how I build"
@@ -379,7 +334,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="border-t border-border bg-bg-secondary/60">
+        <section id="contact" className="scroll-mt-24 border-t border-border bg-bg-secondary/60">
           <div className="mx-auto grid max-w-6xl gap-6 px-6 py-10 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="font-mono text-xs font-medium uppercase text-accent">
